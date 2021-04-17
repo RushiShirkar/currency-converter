@@ -38,6 +38,7 @@
 				<div class="col">
 					<b-form-input
 		 				placeholder="Indian Rupee"
+		 				readonly
 		 			>
 		 			</b-form-input>
 				</div>
