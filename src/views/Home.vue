@@ -1,6 +1,6 @@
 <template>
-	<div class="container align-items-center">
-		<b-card class="mt-5">
+	<div class="container bg-white">
+		<b-card class="mt-5 bg-light pb-5">
 			<div class="text-center">
 				<h2>Currency Converter</h2>
 			</div>
@@ -99,7 +99,7 @@ export default {
 			}
 			this.currencyRate = selected.rate;
 			if(this.selectedInput1){ 
-				if(isNaN(this.calc2)){
+				if(this.calc1 == ''){
 					this.calc2 = "";
 					this.calc1 = "";
 					return;
@@ -107,16 +107,12 @@ export default {
 				this.calc1 = (this.calc2 * this.currencyRate).toFixed(3);
 			}
 			else {
-				if(isNaN(this.calc2)){
+				if(this.calc2 == ''){
 					this.calc2 = "";
 					this.calc1 = "";
 					return;
 				}
 				this.calc1 = (this.calc2 / this.currencyRate).toFixed(3);
-			}
-			if(this.calc1 == 0 || this.calc2 == 0) {
-				this.calc2 = "";
-				this.calc1 = "";
 			}
 		},
 		calculate(value) {
@@ -132,18 +128,24 @@ export default {
 				this.calc2 = value;
 				this.calc1 = (value / this.currencyRate).toFixed(3);
 			}
-			if(this.calc1 == 0 || this.calc2 == 0) {
-				this.calc2 = "";
-				this.calc1 = "";
-			}
 		},
 		calculateA_B(){
 			this.selectedInput1 = true;
 			this.calculate(this.calc1);
+			if(this.calc1 == ''){
+				this.calc2 = "";
+				this.calc1 = "";
+				return;
+			}
 		},
 		calculateB_A(){
 			this.selectedInput1 = false;
 			this.calculate(this.calc2);
+			if(this.calc2 == ''){
+				this.calc2 = "";
+				this.calc1 = "";
+				return;
+			}
 		}
 	}
 }
